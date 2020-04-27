@@ -8,7 +8,6 @@ import java.util.Set;
 
 /**
  * @author phillner
- * @created 2020-04-24
  */
 @Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
@@ -29,7 +28,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner save(Owner object) {
-        return super.save(object.getId(), object);
+        return super.save(object);
     }
 
     @Override
