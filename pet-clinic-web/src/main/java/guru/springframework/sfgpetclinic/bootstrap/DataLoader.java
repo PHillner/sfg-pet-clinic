@@ -1,6 +1,7 @@
 package guru.springframework.sfgpetclinic.bootstrap;
 
 import guru.springframework.sfgpetclinic.model.Owner;
+import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
@@ -8,6 +9,8 @@ import guru.springframework.sfgpetclinic.services.VetService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -27,24 +30,46 @@ public class DataLoader implements CommandLineRunner {
 
         PetType cat = new PetType();
         cat.setName("Cat");
-        petTypeService.save(cat);
+        cat = petTypeService.save(cat);
 
         PetType dog = new PetType();
         dog.setName("Dog");
-        petTypeService.save(dog);
+        dog = petTypeService.save(dog);
 
         PetType bird = new PetType();
         bird.setName("Bird");
-        petTypeService.save(bird);
+        bird = petTypeService.save(bird);
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Micke");
         owner1.setLastName("Långnäbb");
+        owner1.setAddress("1st Street");
+        owner1.setCity("City 1");
+        owner1.setTelephone("123123123");
+
+        Pet mickesPet = new Pet();
+        mickesPet.setName("Kitty");
+        mickesPet.setPetType(cat);
+        mickesPet.setBirthDate(LocalDate.now());
+        mickesPet.setOwner(owner1);
+        owner1.getPets().add(mickesPet);
+
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Kalle");
         owner2.setLastName("Katala");
+        owner2.setAddress("21st Street");
+        owner2.setCity("City 9");
+        owner2.setTelephone("123456789");
+
+        Pet kallesPet = new Pet();
+        kallesPet.setName("Birdie");
+        kallesPet.setPetType(bird);
+        kallesPet.setBirthDate(LocalDate.now().minusMonths(4));
+        kallesPet.setOwner(owner2);
+        owner2.getPets().add(kallesPet);
+
         ownerService.save(owner2);
 
         System.out.println("Loaded Owners. Almost ready...");
