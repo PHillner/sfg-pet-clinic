@@ -53,7 +53,7 @@ public class DataLoader implements CommandLineRunner {
 
         Speciality surgery = new Speciality();
         surgery.setDescription("Surgery");
-        surgery = specialityService.save(radiology);
+        surgery = specialityService.save(surgery);
 
         Speciality dentistry = new Speciality();
         dentistry.setDescription("Dentistry");
