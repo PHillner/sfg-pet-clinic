@@ -46,7 +46,7 @@ class OwnerJpaServiceTest {
     }
 
     @Test
-    void findByLastName() {
+    void testFindByLastName() {
         when(service.findByLastName(any())).thenReturn(returnOwner);
 
         Owner sisunen = service.findByLastName(LAST_NAME);
@@ -55,7 +55,7 @@ class OwnerJpaServiceTest {
     }
 
     @Test
-    void findAll() {
+    void testFindAll() {
         Set<Owner> returnOwnersSet = new HashSet<>();
         returnOwnersSet.add(Owner.builder().id(1L).build());
         returnOwnersSet.add(Owner.builder().id(2L).build());
@@ -68,7 +68,7 @@ class OwnerJpaServiceTest {
     }
 
     @Test
-    void findById() {
+    void testFindById() {
         when(ownerRepository.findById(anyLong())).thenReturn(Optional.of(returnOwner));
 
         Owner owner = service.findById(1L);
@@ -76,7 +76,7 @@ class OwnerJpaServiceTest {
     }
 
     @Test
-    void findByIdNotFound() {
+    void testFindByIdNotFound() {
         when(ownerRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         Owner owner = service.findById(1L);
@@ -84,7 +84,7 @@ class OwnerJpaServiceTest {
     }
 
     @Test
-    void save() {
+    void testSave() {
         when(ownerRepository.save(any())).thenReturn(returnOwner);
 
         Owner savedOwner = service.save(returnOwner);
@@ -93,13 +93,13 @@ class OwnerJpaServiceTest {
     }
 
     @Test
-    void delete() {
+    void testDelete() {
         service.delete(returnOwner);
         verify(ownerRepository).delete(any());
     }
 
     @Test
-    void deleteById() {
+    void testDeleteById() {
         service.deleteById(1L);
         verify(ownerRepository).deleteById(anyLong());
     }

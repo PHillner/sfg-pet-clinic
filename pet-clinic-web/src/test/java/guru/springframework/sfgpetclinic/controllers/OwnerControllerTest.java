@@ -46,7 +46,7 @@ class OwnerControllerTest {
     }
 
     @Test
-    void listOwners() throws Exception {
+    void testListOwners() throws Exception {
         when(ownerService.findAll()).thenReturn(owners);
 
         mockMvc.perform(get("/owners"))
@@ -57,7 +57,7 @@ class OwnerControllerTest {
     }
 
     @Test
-    void listOwnersByIndex() throws Exception {
+    void testListOwnersByIndex() throws Exception {
         when(ownerService.findAll()).thenReturn(owners);
 
         mockMvc.perform(get("/owners/index"))
@@ -67,7 +67,7 @@ class OwnerControllerTest {
     }
 
     @Test
-    void findOwners() throws Exception {
+    void testFindOwners() throws Exception {
         mockMvc.perform(get("/owners/find"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("notimplemented"));
@@ -76,7 +76,7 @@ class OwnerControllerTest {
     }
 
     @Test
-    void displayOwner() throws Exception {
+    void testDisplayOwner() throws Exception {
         when(ownerService.findById(anyLong())).thenReturn(Owner.builder().id(1L).build());
 
         mockMvc.perform(get("/owners/123"))
