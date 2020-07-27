@@ -151,7 +151,6 @@ class OwnerControllerTest {
     @Test
     void processUpdateOwnerForm() throws Exception {
         Owner owner = Owner.builder().id(1L).build();
-        when(ownerService.findById(anyLong())).thenReturn(owner);
         when(ownerService.save(any())).thenReturn(owner);
 
         mockMvc.perform(post("/owners/1/edit"))
@@ -159,7 +158,6 @@ class OwnerControllerTest {
                 .andExpect(view().name("redirect:/owners/1"))
                 .andExpect(model().attributeExists("owner"));
 
-        verify(ownerService).findById(anyLong());
         verify(ownerService).save(any());
     }
 }
